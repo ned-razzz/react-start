@@ -12,9 +12,10 @@
     <script type="text/babel">
       function App() {
         const [counter, setCounter] = React.useState(0);
-        console.log(setCounter);
         const onClick = () => {
-          setCounter(counter + 1);
+          // setCounter(counter + 1);
+          //함수형으로 작성하면 현재 값을 보장함
+          setCounter((current) => current + 1);
         };
         return (
           <div>
