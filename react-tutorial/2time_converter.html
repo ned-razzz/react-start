@@ -11,7 +11,7 @@
     <div id="root"></div>
   </body>
   <script type="text/babel">
-    function App() {
+    function ConverterTime() {
       const [flipped, setFlipped] = React.useState(false);
 
       const [minutes, setMinutes] = React.useState(0);
@@ -35,7 +35,6 @@
       const flip = () => setFlipped((current) => !current);
       return (
         <div>
-          <h1>Time Converter</h1>
           <div>
             {/*Like for and class, already existed javascript keyword cannot use*/}
             <label htmlFor="minutes">Minutes </label>
@@ -63,6 +62,28 @@
             <button onClick={reset}>Reset</button>
             <button onClick={flip}>Flip</button>
           </div>
+        </div>
+      );
+    }
+
+    function ConverterLength() {
+      return <h3>km to miles</h3>;
+    }
+
+    function App() {
+      const [navIndex, setNavIndex] = React.useState("time");
+      const selectNav = (event) => {
+        setNavIndex(event.target.value);
+      };
+      return (
+        <div>
+          <h1>Super Converter</h1>
+          <select onChange={selectNav}>
+            <option value="time">Minutes & Hours</option>
+            <option value="length">Km & Miles</option>
+          </select>
+          {navIndex === "time" ? <ConverterTime /> : null}
+          {navIndex === "length" ? <ConverterLength /> : null}
         </div>
       );
     }
