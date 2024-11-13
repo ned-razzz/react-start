@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script type="text/babel">
+    function App() {
+      const [flipped, setFlipped] = React.useState(false);
+
+      const [minutes, setMinutes] = React.useState(0);
+      const [hours, setHours] = React.useState(0);
+
+      const updateMinutes = (event) => {
+        const newMinutes = event.target.value;
+        setMinutes(newMinutes);
+        setHours(Math.round(newMinutes / 60));
+      };
+      const updateHours = (event) => {
+        const newHours = event.target.value;
+        setMinutes(newHours * 60);
+        setHours(newHours);
+      };
+
+      const reset = () => {
+        setMinutes(0);
+        setHours(0);
+      };
+      const flip = () => setFlipped((current) => !current);
+      return (
+        <div>
+          <h1>Time Converter</h1>
+          <div>
+            {/*Like for and class, already existed javascript keyword cannot use*/}
+            <label htmlFor="minutes">Minutes </label>
+            <input
+              value={minutes}
+              disabled={flipped}
+              onChange={updateMinutes}
+              id="minutes"
+              placeholder="minutes"
+              type="number"
+            />
+          </div>
+          <div>
+            <label htmlFor="hours">Hours </label>
+            <input
+              value={hours}
+              disabled={!flipped}
+              onChange={updateHours}
+              id="hours"
+              placeholder="hours"
+              type="number"
+            />
+          </div>
+          <div>
+            <button onClick={reset}>Reset</button>
+            <button onClick={flip}>Flip</button>
+          </div>
+        </div>
+      );
+    }
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
+  </script>
+</html>
