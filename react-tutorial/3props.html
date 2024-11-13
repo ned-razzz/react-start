@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script type="text/babel">
+    function Button({ text, color }) {
+      return (
+        <button
+          style={{
+            backgroundColor: color,
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+          }}>
+          {text}
+        </button>
+      );
+    }
+    function App() {
+      return (
+        <div>
+          <Button text="Save Changes" color="tomato" />
+          <Button text="Confirm" color="blue" />
+        </div>
+      );
+    }
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(<App />);
+  </script>
+</html>
